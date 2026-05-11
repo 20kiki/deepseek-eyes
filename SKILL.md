@@ -1,13 +1,13 @@
 ---
 name: deepseek-eyes
-description: Use when the user shares an image (screenshot, photo, diagram) that Claude can't natively see, or when the user asks to analyze/describe/understand an image. Route every image the user wants analyzed through this skill — send the image path to the bundled eyes.py script, which calls a vision model (default: qwen3.6-plus) via DashScope and returns a Chinese text description. Then answer the user's question based on that description.
+description: Use when the user shares an image (screenshot, photo, diagram) that Claude can't natively see, or when the user asks to analyze/describe/understand an image. Route every image the user wants analyzed through this skill — send the image path to the bundled eyes.py script, which calls a vision model (default: qwen3.6-plus) via 百炼 (DashScope) and returns a Chinese text description. Then answer the user's question based on that description.
 ---
 
-# Image Vision (DashScope Vision Models)
+# Image Vision (阿里云百炼 Vision Models)
 
 ## Overview
 
-This skill bundles a Python script (`eyes.py`) that sends an image to Alibaba Cloud DashScope's vision models and returns a detailed Chinese text description. Use this whenever the user wants help with an image.
+This skill bundles a Python script (`eyes.py`) that sends an image to 阿里云百炼 (DashScope)'s vision models and returns a detailed Chinese text description. Use this whenever the user wants help with an image.
 
 **Background:** The current model (DeepSeek V4 Pro) cannot natively see images. This skill bridges that gap by routing images through Qwen series vision models — the vision model does the seeing, and the text description is fed back into the conversation so the main model can reason about the image content.
 
@@ -43,7 +43,7 @@ The script prints the description to stdout. Read it directly from the command o
 
 - `pip install dashscope` (already installed globally)
 - `DASHSCOPE_API_KEY` environment variable must be set
-- New DashScope users get free quota — no payment needed to try
+- New 百炼 users get free quota — no payment needed to try
 
 ## Available Models
 

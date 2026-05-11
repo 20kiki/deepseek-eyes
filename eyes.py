@@ -1,4 +1,4 @@
-"""Call a DashScope vision model to describe an image. Print result to stdout."""
+"""Call a 百炼 (DashScope) vision model to describe an image. Print result to stdout."""
 
 import sys
 import os
@@ -39,7 +39,7 @@ def encode_image(image_path: str) -> str:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Describe an image with DashScope vision models")
+    parser = argparse.ArgumentParser(description="Describe an image with 百炼 (DashScope) vision models")
     parser.add_argument("image", help="Path to the image file")
     parser.add_argument("--prompt", default="请详细描述这张图片的内容。",
                         help="Custom prompt for the vision model")

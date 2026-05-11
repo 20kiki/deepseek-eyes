@@ -11,7 +11,7 @@
 这个 skill 通过接入阿里云百炼（DashScope）的视觉模型来实现图片理解：
 
 ```
-你的图片 → eyes.py → 视觉模型 (DashScope) → 中文文字描述 → 当前对话模型
+你的图片 → eyes.py → 视觉模型 (百炼 DashScope) → 中文文字描述 → 当前对话模型
 ```
 
 所有模型统一使用 `MultiModalConversation` API 调用。
