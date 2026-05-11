@@ -64,10 +64,11 @@ pip install dashscope
 export DASHSCOPE_API_KEY="your-api-key"
 ```
 
-**Windows PowerShell：**
+**Windows（永久生效）：**
 ```powershell
-$env:DASHSCOPE_API_KEY="your-api-key"
+[Environment]::SetEnvironmentVariable("DASHSCOPE_API_KEY", "your-api-key", "User")
 ```
+设置后需重启终端。临时使用可在当前窗口 `$env:DASHSCOPE_API_KEY="your-api-key"`（仅本次有效）。
 
 ### 3. 使用
 

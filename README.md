@@ -62,9 +62,16 @@ pip install dashscope
 
 Register at [Bailian Console](https://bailian.console.aliyun.com/), create an API key, then:
 
+**macOS / Linux：**
 ```bash
 export DASHSCOPE_API_KEY="your-api-key"
 ```
+
+**Windows (permanent):**
+```powershell
+[Environment]::SetEnvironmentVariable("DASHSCOPE_API_KEY", "your-api-key", "User")
+```
+Restart terminal after setting. For temporary use: `$env:DASHSCOPE_API_KEY="your-api-key"` (current session only).
 
 ### 3. Use
 
