@@ -25,24 +25,6 @@ Your Image → eyes.py → Bailian Vision Model (Qwen series) → Chinese Text D
 
 The script sends your image to Alibaba Cloud Bailian's vision API, gets back a detailed description, and prints it to stdout. The LLM reads this text and answers your question — it never needs to "see" the image directly.
 
-## Before / After
-
-### Without deepseek-eyes
-> User: "What's in this screenshot?"
->
-> DeepSeek: "I'm sorry, I can't view images directly. Please describe the image to me."
->
-> ❌ Dead end. The conversation stalls.
-
-### With deepseek-eyes
-> User: "What's in this screenshot?"
->
-> Claude runs `eyes.py screenshot.png` → Bailian returns: "A login form with email and password fields, and a red error message saying 'Invalid credentials'"
->
-> DeepSeek: "The screenshot shows a login form. The error 'Invalid credentials' suggests..."
->
-> ✅ The model reasons about image content it can't see.
-
 ---
 
 ## Available Models
