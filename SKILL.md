@@ -53,9 +53,18 @@ The script saves the description to `image_desc.txt` in the current working dire
 
 | Model | Notes |
 |-------|-------|
-| `qwen3-vl-plus` (default) | Latest generation, best all-around |
-| `qwen-vl-max` | Previous-gen flagship, strong performance |
-| `qwen-vl-plus` | Previous-gen standard, faster & cheaper |
+| `qwen3.6-plus` (default) | Latest flagship multimodal, 1M context, image+video (2h/2GB) |
+| `qwen3.6-flash` | Lightweight MoE 35B-A3B, cost-optimized |
+| `qwen3-vl-plus` | Dedicated VL model with thinking mode |
+| `qwen3-vl-flash` | Fast VL model |
+| `qwen3-vl-235b-a22b-instruct` | Open-source 235B MoE VL |
+| `qwen3-vl-32b-instruct` | Open-source 32B VL |
+| `qwen3-vl-8b-instruct` | Open-source 8B VL (lightweight) |
+| `qwen-vl-max` | Previous-gen flagship (stable) |
+| `qwen-vl-plus` | Previous-gen standard (fast & cheap) |
+| `qwen2.5-vl-72b-instruct` | Open-source 72B VL |
+| `qvq-max` | Visual reasoning: math, geometry, charts |
+| `qwen-vl-ocr` | OCR specialist: docs, tables, handwriting |
 
 ## Notes
 

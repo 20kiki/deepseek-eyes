@@ -26,13 +26,48 @@
 
 ## 可用模型
 
-DashScope 上有多个视觉模型可以调用，通过 `--model` 参数切换：
+阿里云百炼（DashScope）平台提供丰富的视觉模型，通过 `--model` 参数切换：
+
+### 新一代旗舰（推荐）
 
 | 模型 | 特点 |
 |------|------|
-| `qwen3-vl-plus`（默认）| 最新一代，综合能力强，推荐 |
-| `qwen-vl-max` | 上一代旗舰，效果优秀 |
-| `qwen-vl-plus` | 上一代标准版，速度更快、成本更低 |
+| `qwen3.6-plus`（默认）| 最新旗舰多模态，支持图像+视频（最长 2h/2GB），1M 上下文，万物识别/OCR/Agentic Coding |
+| `qwen3.6-flash` | 轻量高效版，MoE 35B-A3B 架构，效果接近 Plus 但成本更低 |
+
+### 专用视觉语言模型（Qwen3-VL）
+
+| 模型 | 特点 |
+|------|------|
+| `qwen3-vl-plus` | 商业版旗舰 VL，支持思考/非思考模式 |
+| `qwen3-vl-flash` | 商业版快速 VL，速度优化 |
+| `qwen3-vl-235b-a22b-instruct` | 开源最大 VL（235B MoE） |
+| `qwen3-vl-32b-instruct` | 开源 32B 密集模型 |
+| `qwen3-vl-30b-a3b-instruct` | 开源 30B MoE 模型 |
+| `qwen3-vl-8b-instruct` | 开源 8B 轻量模型 |
+| `qwen3-vl-235b-a22b-thinking` / `30b-a3b-thinking` / `8b-thinking` | 以上模型 + 思维链推理版本 |
+
+### 经典商用版
+
+| 模型 | 特点 |
+|------|------|
+| `qwen-vl-max` | 上一代旗舰，效果稳定 |
+| `qwen-vl-plus` | 上一代均衡版，速度快、成本低 |
+
+### 开源系列（Qwen2.5-VL）
+
+| 模型 | 特点 |
+|------|------|
+| `qwen2.5-vl-72b-instruct` | 72B 视觉语言模型 |
+| `qwen2.5-vl-32b-instruct` | 32B 视觉语言模型 |
+| `qwen2.5-vl-7b-instruct` | 7B 视觉语言模型 |
+
+### 专项模型
+
+| 模型 | 场景 |
+|------|------|
+| `qvq-max` | 视觉推理：数学题、几何证明、图表分析 |
+| `qwen-vl-ocr` | OCR 专用：文档、表格、手写、试卷提取 |
 
 ## 快速开始
 
