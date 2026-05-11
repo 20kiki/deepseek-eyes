@@ -51,29 +51,11 @@ The script saves the description to `image_desc.txt` in the current working dire
 
 ## Available Models
 
-Reference: https://bailian.console.aliyun.com/cn-beijing?tab=doc#/doc/?type=model&url=2845871
-
-### Qwen3.6 — latest generation
-
 | Model | Notes |
 |-------|-------|
-| `qwen3.6-plus` (default) | Best performance, recommended |
+| `qwen3.6-plus` (default) | Latest flagship, best all-around |
 | `qwen3.6-flash` | Faster & cheaper |
-| `qwen3.6-35b-a3b` | Open-source |
-
-### Qwen3.5
-
-| Model | Notes |
-|-------|-------|
-| `qwen3.5-plus` | Best visual understanding |
-| `qwen3.5-flash` | Faster & cheaper, high value |
-
-### Qwen3-VL
-
-| Model | Notes |
-|-------|-------|
-| `qwen3-vl-plus` | Best in series (3D localization, agent tools, long video) |
-| `qwen3-vl-flash` | Faster & cheaper |
+| `qwen3-vl-plus` | Dedicated VL, high-precision object recognition |
 
 ## Options
 

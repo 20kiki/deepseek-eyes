@@ -17,18 +17,9 @@ from pathlib import Path
 OUTPUT_FILENAME = "image_desc.txt"
 
 AVAILABLE_MODELS = [
-    # Qwen3.6 — latest generation (2026-04)
-    "qwen3.6-plus",         # 性能最强，推荐优先使用
+    "qwen3.6-plus",         # 最新一代，性能最强，推荐优先使用
     "qwen3.6-flash",        # 速度更快，成本更低
-    "qwen3.6-35b-a3b",      # 开源系列
-
-    # Qwen3.5
-    "qwen3.5-plus",         # 千问性能最强的视觉理解模型
-    "qwen3.5-flash",        # 速度更快，成本更低
-
-    # Qwen3-VL
-    "qwen3-vl-plus",        # Qwen3-VL 系列性能最强
-    "qwen3-vl-flash",       # 速度更快，成本更低
+    "qwen3-vl-plus",        # 专用视觉语言模型
 ]
 
 DEFAULT_MODEL = "qwen3.6-plus"

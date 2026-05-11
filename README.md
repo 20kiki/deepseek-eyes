@@ -28,33 +28,11 @@
 
 参考 [百炼官方文档](https://bailian.console.aliyun.com/cn-beijing?tab=doc#/doc/?type=model&url=2845871)，通过 `--model` 参数切换：
 
-### Qwen3.6（最新一代）
-
-相比 Qwen3.5，在代码开发、泛化推理、多模态能力（万物识别、OCR、物体定位）等方面显著增强。
-
 | 模型 | 说明 |
 |------|------|
-| `qwen3.6-plus`（默认）| 性能最强，推荐优先使用 |
+| `qwen3.6-plus`（默认）| 最新一代旗舰，性能最强，万物识别/OCR/物体定位 |
 | `qwen3.6-flash` | 速度更快，成本更低 |
-| `qwen3.6-35b-a3b` | 开源系列 |
-
-### Qwen3.5
-
-在多模态推理、2D/3D 图像理解、复杂文档解析、视觉编程、视频理解、多模态智能体等任务上领先。
-
-| 模型 | 说明 |
-|------|------|
-| `qwen3.5-plus` | 千问性能最强的视觉理解模型，推荐优先使用 |
-| `qwen3.5-flash` | 速度更快，成本更低，高性价比 |
-
-### Qwen3-VL
-
-适用于高精度物体识别与定位（包括 3D 定位）、Agent 工具调用、文档和网页解析、复杂题目解答、长视频理解等任务。
-
-| 模型 | 说明 |
-|------|------|
-| `qwen3-vl-plus` | Qwen3-VL 系列中性能最强的模型 |
-| `qwen3-vl-flash` | 速度更快，成本更低，高性价比 |
+| `qwen3-vl-plus` | 专用视觉语言模型，适合高精度物体识别与定位 |
 
 ## 快速开始
 
@@ -88,7 +66,7 @@ python image_vision.py "path/to/image.png"
 python image_vision.py "screenshot.png" --prompt "这张图片里有什么错误信息？"
 
 # 切换模型
-python image_vision.py "photo.jpg" --model "qwen3.5-plus"
+python image_vision.py "photo.jpg" --model "qwen3-vl-plus"
 
 # 追求速度 / 降低成本
 python image_vision.py "photo.jpg" --model "qwen3.6-flash"
