@@ -1,4 +1,4 @@
-"""Call Qwen3-VL (DashScope) to describe an image. Output to file and console."""
+"""Call a DashScope vision model to describe an image. Output to file and console."""
 
 import sys
 import os
@@ -7,6 +7,14 @@ import argparse
 from pathlib import Path
 
 OUTPUT_FILENAME = "image_desc.txt"
+
+# Available vision models on DashScope
+AVAILABLE_MODELS = [
+    "qwen3-vl-plus",
+    "qwen-vl-max",
+    "qwen-vl-plus",
+]
+DEFAULT_MODEL = "qwen3-vl-plus"
 
 
 def encode_image(image_path: str) -> str:
@@ -27,10 +35,13 @@ def encode_image(image_path: str) -> str:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Describe an image with Qwen3-VL")
+    parser = argparse.ArgumentParser(description="Describe an image with DashScope vision models")
     parser.add_argument("image", help="Path to the image file")
     parser.add_argument("--prompt", default="请详细描述这张图片的内容。",
                         help="Custom prompt for the vision model")
+    parser.add_argument("--model", default=DEFAULT_MODEL,
+                        choices=AVAILABLE_MODELS,
+                        help=f"Vision model to use (default: {DEFAULT_MODEL})")
     args = parser.parse_args()
 
     try:
@@ -43,7 +54,8 @@ def main():
     if not api_key:
         sys.stderr.write(
             "DASHSCOPE_API_KEY not set.\n"
-            "Get a key at https://dashscope.console.aliyun.com/\n"
+            "Get a free key at https://dashscope.console.aliyun.com/\n"
+            "New users get free quota — no payment needed to try.\n"
         )
         sys.exit(1)
 
@@ -58,8 +70,10 @@ def main():
         }
     ]
 
+    sys.stderr.write(f"Calling {args.model}...\n")
+
     resp = dashscope.MultiModalConversation.call(
-        model="qwen3-vl-plus",
+        model=args.model,
         messages=messages,
         max_tokens_per_image=1500,
     )

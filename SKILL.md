@@ -1,13 +1,15 @@
 ---
 name: image-vision
-description: Use when the user shares an image (screenshot, photo, diagram) that Claude can't natively see, or when the user asks to analyze/describe/understand an image. Route every image the user wants analyzed through this skill — send the image path to the bundled image_vision.py script, which calls Qwen3-VL via DashScope and returns a Chinese text description. Then answer the user's question based on that description.
+description: Use when the user shares an image (screenshot, photo, diagram) that Claude can't natively see, or when the user asks to analyze/describe/understand an image. Route every image the user wants analyzed through this skill — send the image path to the bundled image_vision.py script, which calls a vision model (default: Qwen3-VL) via DashScope and returns a Chinese text description. Then answer the user's question based on that description.
 ---
 
-# Image Vision (Qwen3-VL)
+# Image Vision (DashScope Vision Models)
 
 ## Overview
 
-This skill bundles a Python script (`image_vision.py`) that sends an image to Alibaba Cloud DashScope's Qwen3-VL model and returns a detailed Chinese text description. Use this whenever the user wants help with an image.
+This skill bundles a Python script (`image_vision.py`) that sends an image to Alibaba Cloud DashScope's vision models and returns a detailed Chinese text description. Use this whenever the user wants help with an image.
+
+**Background:** The current model (DeepSeek V4 Pro) cannot natively see images. This skill bridges that gap by routing images through Qwen-VL series models — the vision model does the seeing, and the text description is fed back into the conversation so the main model can reason about the image content.
 
 ## When to use
 
@@ -28,6 +30,11 @@ If the user has a specific question about the image, pass it via `--prompt`:
 python ~/.claude/skills/image-vision/image_vision.py "<image_path>" --prompt "这张图片里有什么错误信息？"
 ```
 
+To use a different vision model, pass `--model`:
+```bash
+python ~/.claude/skills/image-vision/image_vision.py "<image_path>" --model "qwen-vl-max"
+```
+
 ### Step 2: Read the output and answer
 
 The script saves the description to `image_desc.txt` in the current working directory. After the script runs:
@@ -39,10 +46,20 @@ The script saves the description to `image_desc.txt` in the current working dire
 ### Prerequisites
 
 - `pip install dashscope` (already installed globally)
-- `DASHSCOPE_API_KEY` environment variable must be set
+- `DASHSCOPE_API_KEY` environment variable must be set (Alibaba Cloud DashScope)
+- Free API quota available for new DashScope users
+
+## Available Models
+
+| Model | Notes |
+|-------|-------|
+| `qwen3-vl-plus` (default) | Latest generation, best all-around |
+| `qwen-vl-max` | Previous-gen flagship, strong performance |
+| `qwen-vl-plus` | Previous-gen standard, faster & cheaper |
 
 ## Notes
 
 - The script always works — the current model never needs to "see" the image directly
 - Always delete `image_desc.txt` after reading, it's a temporary artifact
 - Default prompt asks for a detailed description in Chinese; override with `--prompt` for targeted questions
+- Switch models with `--model` to balance speed, cost, and accuracy
