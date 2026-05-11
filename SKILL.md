@@ -9,7 +9,7 @@ description: Use when the user shares an image (screenshot, photo, diagram) that
 
 This skill bundles a Python script (`image_vision.py`) that sends an image to Alibaba Cloud DashScope's vision models and returns a detailed Chinese text description. Use this whenever the user wants help with an image.
 
-**Background:** The current model (DeepSeek V4 Pro) cannot natively see images. This skill bridges that gap by routing images through Qwen-VL series models — the vision model does the seeing, and the text description is fed back into the conversation so the main model can reason about the image content.
+**Background:** The current model (DeepSeek V4 Pro) cannot natively see images. This skill bridges that gap by routing images through Qwen series vision models — the vision model does the seeing, and the text description is fed back into the conversation so the main model can reason about the image content.
 
 ## When to use
 
@@ -25,14 +25,14 @@ This skill bundles a Python script (`image_vision.py`) that sends an image to Al
 python ~/.claude/skills/image-vision/image_vision.py "<image_path>"
 ```
 
-If the user has a specific question about the image, pass it via `--prompt`:
+With a custom prompt:
 ```bash
 python ~/.claude/skills/image-vision/image_vision.py "<image_path>" --prompt "这张图片里有什么错误信息？"
 ```
 
-To use a different vision model, pass `--model`:
+Switch models or enable high-res:
 ```bash
-python ~/.claude/skills/image-vision/image_vision.py "<image_path>" --model "qwen-vl-max"
+python ~/.claude/skills/image-vision/image_vision.py "<image_path>" --model "qwen3.5-plus" --high-res
 ```
 
 ### Step 2: Read the output and answer
@@ -46,33 +46,43 @@ The script saves the description to `image_desc.txt` in the current working dire
 ### Prerequisites
 
 - `pip install dashscope` (already installed globally)
-- `DASHSCOPE_API_KEY` environment variable must be set (Alibaba Cloud DashScope)
-- Free API quota available for new DashScope users
+- `DASHSCOPE_API_KEY` environment variable must be set
+- New DashScope users get free quota — no payment needed to try
 
 ## Available Models
 
-All models use the `MultiModalConversation` API. The script auto-handles model differences (stream-only, OCR options, etc.).
+Reference: https://bailian.console.aliyun.com/cn-beijing?tab=doc#/doc/?type=model&url=2845871
+
+### Qwen3.6 — latest generation
 
 | Model | Notes |
 |-------|-------|
-| `qwen3.6-plus` (default) | Latest flagship multimodal, 1M context, image+video (2h/2GB) |
-| `qwen3.6-flash` | Lightweight MoE 35B-A3B, cost-optimized |
-| `qwen3-vl-plus` | Dedicated VL, thinking mode |
-| `qwen3-vl-flash` | Fast VL |
-| `qwen-vl-max` | Previous-gen flagship (stable) |
-| `qwen-vl-plus` | Previous-gen standard (fast & cheap) |
-| `qvq-max` | Visual reasoning: math, geometry, charts (stream-only, auto-handled) |
-| `qvq-plus` | Same, lighter/faster |
-| `qwen-vl-ocr` / `qwen-vl-ocr-latest` | OCR specialist: docs, tables, handwriting (auto-enables ocr_options) |
+| `qwen3.6-plus` (default) | Best performance, recommended |
+| `qwen3.6-flash` | Faster & cheaper |
+| `qwen3.6-35b-a3b` | Open-source |
 
-## Available Options
+### Qwen3.5
+
+| Model | Notes |
+|-------|-------|
+| `qwen3.5-plus` | Best visual understanding |
+| `qwen3.5-flash` | Faster & cheaper, high value |
+
+### Qwen3-VL
+
+| Model | Notes |
+|-------|-------|
+| `qwen3-vl-plus` | Best in series (3D localization, agent tools, long video) |
+| `qwen3-vl-flash` | Faster & cheaper |
+
+## Options
 
 | Flag | Description |
 |------|-------------|
 | `--model` | Switch vision model (see table above) |
 | `--prompt` | Custom question/prompt for the image |
-| `--file-url` | Use `file://` URL instead of base64 (simpler but may not work for all accounts) |
-| `--high-res` | Enable high resolution mode (recommended for documents/tables/small text) |
+| `--file-url` | Use `file://` URL instead of base64 |
+| `--high-res` | High resolution mode (documents/tables/small text) |
 
 ## Notes
 

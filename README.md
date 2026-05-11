@@ -14,7 +14,7 @@
 你的图片 → image_vision.py → 视觉模型 (DashScope) → 中文文字描述 → 当前对话模型
 ```
 
-所有模型统一使用 `MultiModalConversation` API 调用，脚本会根据模型类型自动处理差异（如 qvq 系列的流式输出、OCR 模型的专用参数）。
+所有模型统一使用 `MultiModalConversation` API 调用。
 
 ## 白嫖额度
 
@@ -26,39 +26,35 @@
 
 ## 可用模型
 
-以下模型均已确认可通过 `MultiModalConversation.call()` 调用，通过 `--model` 参数切换：
+参考 [百炼官方文档](https://bailian.console.aliyun.com/cn-beijing?tab=doc#/doc/?type=model&url=2845871)，通过 `--model` 参数切换：
 
-### 新一代旗舰（推荐）
+### Qwen3.6（最新一代）
 
-| 模型 | 说明 |
-|------|------|
-| `qwen3.6-plus`（默认）| 最新旗舰多模态，图像+视频（最长 2h/2GB），1M 上下文，万物识别/OCR/智能体编程 |
-| `qwen3.6-flash` | 轻量高效版，MoE 35B-A3B 架构，效果接近 Plus 成本更低 |
-
-### 专用视觉语言模型（Qwen3-VL）
+相比 Qwen3.5，在代码开发、泛化推理、多模态能力（万物识别、OCR、物体定位）等方面显著增强。
 
 | 模型 | 说明 |
 |------|------|
-| `qwen3-vl-plus` | 商业版旗舰 VL，支持思考/非思考模式 |
-| `qwen3-vl-flash` | 商业版快速 VL，速度优化 |
+| `qwen3.6-plus`（默认）| 性能最强，推荐优先使用 |
+| `qwen3.6-flash` | 速度更快，成本更低 |
+| `qwen3.6-35b-a3b` | 开源系列 |
 
-### 经典商用版（Qwen-VL）
+### Qwen3.5
+
+在多模态推理、2D/3D 图像理解、复杂文档解析、视觉编程、视频理解、多模态智能体等任务上领先。
 
 | 模型 | 说明 |
 |------|------|
-| `qwen-vl-max` | 上一代旗舰，效果稳定 |
-| `qwen-vl-plus` | 上一代均衡版，速度快成本低 |
+| `qwen3.5-plus` | 千问性能最强的视觉理解模型，推荐优先使用 |
+| `qwen3.5-flash` | 速度更快，成本更低，高性价比 |
 
-### 专项模型
+### Qwen3-VL
 
-| 模型 | 场景 | 注意事项 |
-|------|------|----------|
-| `qvq-max` | 视觉推理：数学、几何、图表分析 | 仅支持流式输出，脚本自动处理 |
-| `qvq-plus` | 同上，更快更轻量 | 同上 |
-| `qwen-vl-ocr` | OCR 专用：文档、表格、手写提取 | 自动启用 OCR 专用参数 |
-| `qwen-vl-ocr-latest` | OCR 专用最新版 | 同上 |
+适用于高精度物体识别与定位（包括 3D 定位）、Agent 工具调用、文档和网页解析、复杂题目解答、长视频理解等任务。
 
-> 更多模型（Qwen2.5-VL 开源系列、Qwen3.5 全模态系列等）也在百炼平台上可用，但调用方式可能略有不同。以上罗列的是经脚本验证可直接通过 `--model` 切换的模型。
+| 模型 | 说明 |
+|------|------|
+| `qwen3-vl-plus` | Qwen3-VL 系列中性能最强的模型 |
+| `qwen3-vl-flash` | 速度更快，成本更低，高性价比 |
 
 ## 快速开始
 
@@ -92,19 +88,16 @@ python image_vision.py "path/to/image.png"
 python image_vision.py "screenshot.png" --prompt "这张图片里有什么错误信息？"
 
 # 切换模型
-python image_vision.py "photo.jpg" --model "qwen-vl-max"
+python image_vision.py "photo.jpg" --model "qwen3.5-plus"
 
-# OCR 场景：文档/表格文字提取
-python image_vision.py "document.jpg" --model "qwen-vl-ocr-latest" --prompt "提取所有文字，保留表格结构"
-
-# 视觉推理：数学题/几何证明
-python image_vision.py "math_problem.png" --model "qvq-max" --prompt "解这道题"
-
-# 使用 file:// URL 而非 base64（更简洁，但部分账号可能不支持）
-python image_vision.py "photo.jpg" --file-url
+# 追求速度 / 降低成本
+python image_vision.py "photo.jpg" --model "qwen3.6-flash"
 
 # 高分辨率模式（表格/文档/小字场景推荐）
 python image_vision.py "table.png" --high-res
+
+# 使用 file:// URL 而非 base64
+python image_vision.py "photo.jpg" --file-url
 ```
 
 输出会保存到 `image_desc.txt` 并同时打印到终端。
