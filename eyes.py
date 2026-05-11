@@ -1,15 +1,15 @@
-"""Call a DashScope vision model to describe an image. Print result to stdout.
-
-Supported models: qwen3.6-plus / qwen3.6-flash / qwen3-vl-plus
-
-Reference: https://bailian.console.aliyun.com/cn-beijing?tab=doc#/doc/?type=model&url=2845871
-"""
+"""Call a DashScope vision model to describe an image. Print result to stdout."""
 
 import sys
 import os
 import base64
 import argparse
 from pathlib import Path
+
+# Fix garbled Chinese on Windows terminal
+if sys.platform == "win32":
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 AVAILABLE_MODELS = [
     "qwen3.6-plus",         # 最新一代，性能最强，推荐优先使用
