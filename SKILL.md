@@ -32,7 +32,7 @@ python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" --prompt "这张图
 
 Switch models or enable high-res:
 ```bash
-python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" --model "qwen3.5-plus" --high-res
+python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" --model "qwen3-vl-plus" --high-res
 ```
 
 ### Step 2: Read the output and answer
