@@ -66,16 +66,16 @@ pip install dashscope
 
 ### 2. 配置 API Key
 
-在 [百炼控制台](https://bailian.console.aliyun.com/) 获取 API Key，然后设置环境变量：
+在 [百炼控制台](https://bailian.console.aliyun.com/) 获取 API Key，然后在终端中设置环境变量：
 
-**macOS / Linux（永久生效）：**
+**macOS / Linux（永久生效）— 在终端中执行：**
 ```bash
 echo 'export DASHSCOPE_API_KEY="your-api-key"' >> ~/.bashrc
 source ~/.bashrc
 ```
 若使用 zsh，将 `.bashrc` 替换为 `.zshrc`。
 
-**Windows（永久生效）：**
+**Windows（永久生效）— 在 PowerShell 中执行：**
 ```powershell
 [Environment]::SetEnvironmentVariable("DASHSCOPE_API_KEY", "your-api-key", "User")
 ```
