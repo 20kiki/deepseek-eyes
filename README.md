@@ -1,4 +1,4 @@
-# image-vision
+# deepseek-eyes
 
 解决当前 DeepSeek 无法理解图片的问题。
 
@@ -78,7 +78,7 @@ python image_vision.py "table.png" --high-res
 python image_vision.py "photo.jpg" --file-url
 ```
 
-输出会保存到 `image_desc.txt` 并同时打印到终端。
+描述文本直接打印到终端。
 
 ### 4. 作为 Claude Code Skill 使用
 

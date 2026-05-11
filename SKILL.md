@@ -1,5 +1,5 @@
 ---
-name: image-vision
+name: deepseek-eyes
 description: Use when the user shares an image (screenshot, photo, diagram) that Claude can't natively see, or when the user asks to analyze/describe/understand an image. Route every image the user wants analyzed through this skill — send the image path to the bundled image_vision.py script, which calls a vision model (default: qwen3.6-plus) via DashScope and returns a Chinese text description. Then answer the user's question based on that description.
 ---
 
@@ -37,11 +37,7 @@ python ~/.claude/skills/image-vision/image_vision.py "<image_path>" --model "qwe
 
 ### Step 2: Read the output and answer
 
-The script saves the description to `image_desc.txt` in the current working directory. After the script runs:
-
-1. Read `image_desc.txt`
-2. Based on the description, answer the user's question about the image
-3. Delete `image_desc.txt` (optional, to keep things tidy)
+The script prints the description to stdout. Read it directly from the command output and answer the user's question about the image based on that description.
 
 ### Prerequisites
 
@@ -69,6 +65,6 @@ The script saves the description to `image_desc.txt` in the current working dire
 ## Notes
 
 - The script always works — the current model never needs to "see" the image directly
-- Always delete `image_desc.txt` after reading, it's a temporary artifact
+- Description prints to stdout, read it directly from the command output
 - Default prompt asks for a detailed description in Chinese; override with `--prompt` for targeted questions
 - Switch models with `--model` to balance speed, cost, and accuracy
