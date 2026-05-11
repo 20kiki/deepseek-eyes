@@ -1,6 +1,6 @@
 ---
 name: image-vision
-description: Use when the user shares an image (screenshot, photo, diagram) that Claude can't natively see, or when the user asks to analyze/describe/understand an image. Route every image the user wants analyzed through this skill — send the image path to the bundled image_vision.py script, which calls a vision model (default: Qwen3-VL) via DashScope and returns a Chinese text description. Then answer the user's question based on that description.
+description: Use when the user shares an image (screenshot, photo, diagram) that Claude can't natively see, or when the user asks to analyze/describe/understand an image. Route every image the user wants analyzed through this skill — send the image path to the bundled image_vision.py script, which calls a vision model (default: qwen3.6-plus) via DashScope and returns a Chinese text description. Then answer the user's question based on that description.
 ---
 
 # Image Vision (DashScope Vision Models)
@@ -51,20 +51,28 @@ The script saves the description to `image_desc.txt` in the current working dire
 
 ## Available Models
 
+All models use the `MultiModalConversation` API. The script auto-handles model differences (stream-only, OCR options, etc.).
+
 | Model | Notes |
 |-------|-------|
 | `qwen3.6-plus` (default) | Latest flagship multimodal, 1M context, image+video (2h/2GB) |
 | `qwen3.6-flash` | Lightweight MoE 35B-A3B, cost-optimized |
-| `qwen3-vl-plus` | Dedicated VL model with thinking mode |
-| `qwen3-vl-flash` | Fast VL model |
-| `qwen3-vl-235b-a22b-instruct` | Open-source 235B MoE VL |
-| `qwen3-vl-32b-instruct` | Open-source 32B VL |
-| `qwen3-vl-8b-instruct` | Open-source 8B VL (lightweight) |
+| `qwen3-vl-plus` | Dedicated VL, thinking mode |
+| `qwen3-vl-flash` | Fast VL |
 | `qwen-vl-max` | Previous-gen flagship (stable) |
 | `qwen-vl-plus` | Previous-gen standard (fast & cheap) |
-| `qwen2.5-vl-72b-instruct` | Open-source 72B VL |
-| `qvq-max` | Visual reasoning: math, geometry, charts |
-| `qwen-vl-ocr` | OCR specialist: docs, tables, handwriting |
+| `qvq-max` | Visual reasoning: math, geometry, charts (stream-only, auto-handled) |
+| `qvq-plus` | Same, lighter/faster |
+| `qwen-vl-ocr` / `qwen-vl-ocr-latest` | OCR specialist: docs, tables, handwriting (auto-enables ocr_options) |
+
+## Available Options
+
+| Flag | Description |
+|------|-------------|
+| `--model` | Switch vision model (see table above) |
+| `--prompt` | Custom question/prompt for the image |
+| `--file-url` | Use `file://` URL instead of base64 (simpler but may not work for all accounts) |
+| `--high-res` | Enable high resolution mode (recommended for documents/tables/small text) |
 
 ## Notes
 
