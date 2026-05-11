@@ -62,7 +62,7 @@ def main():
     if not api_key:
         sys.stderr.write(
             "DASHSCOPE_API_KEY not set.\n"
-            "Get a free key at https://dashscope.console.aliyun.com/\n"
+            "Get a free key at https://bailian.console.aliyun.com/\n"
             "New users get free quota — no payment needed to try.\n"
         )
         sys.exit(1)
