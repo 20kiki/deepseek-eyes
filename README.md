@@ -11,7 +11,7 @@
 这个 skill 通过接入阿里云百炼（DashScope）的视觉模型来实现图片理解：
 
 ```
-你的图片 → image_vision.py → 视觉模型 (DashScope) → 中文文字描述 → 当前对话模型
+你的图片 → eyes.py → 视觉模型 (DashScope) → 中文文字描述 → 当前对话模型
 ```
 
 所有模型统一使用 `MultiModalConversation` API 调用。
@@ -60,29 +60,29 @@ $env:DASHSCOPE_API_KEY="your-api-key"
 
 ```bash
 # 基本用法 (默认 qwen3.6-plus)
-python image_vision.py "path/to/image.png"
+python eyes.py "path/to/image.png"
 
 # 指定提示词
-python image_vision.py "screenshot.png" --prompt "这张图片里有什么错误信息？"
+python eyes.py "screenshot.png" --prompt "这张图片里有什么错误信息？"
 
 # 切换模型
-python image_vision.py "photo.jpg" --model "qwen3-vl-plus"
+python eyes.py "photo.jpg" --model "qwen3-vl-plus"
 
 # 追求速度 / 降低成本
-python image_vision.py "photo.jpg" --model "qwen3.6-flash"
+python eyes.py "photo.jpg" --model "qwen3.6-flash"
 
 # 高分辨率模式（表格/文档/小字场景推荐）
-python image_vision.py "table.png" --high-res
+python eyes.py "table.png" --high-res
 
 # 使用 file:// URL 而非 base64
-python image_vision.py "photo.jpg" --file-url
+python eyes.py "photo.jpg" --file-url
 ```
 
 描述文本直接打印到终端。
 
 ### 4. 作为 Claude Code Skill 使用
 
-将整个目录复制到 `~/.claude/skills/image-vision/`，Claude Code 会自动加载 `SKILL.md` 中定义的 skill。之后当你在对话中分享图片时，Claude 会自动调用脚本来获取图片描述。
+将整个目录复制到 `~/.claude/skills/deepseek-eyes/`，Claude Code 会自动加载 `SKILL.md` 中定义的 skill。之后当你在对话中分享图片时，Claude 会自动调用脚本来获取图片描述。
 
 ## 支持的图片格式
 

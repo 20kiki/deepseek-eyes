@@ -1,9 +1,6 @@
-"""Call a DashScope vision model to describe an image. Output to file and console.
+"""Call a DashScope vision model to describe an image. Print result to stdout.
 
-Supported models (all via MultiModalConversation API):
-  Qwen3.6: qwen3.6-plus / qwen3.6-flash / qwen3.6-35b-a3b
-  Qwen3.5: qwen3.5-plus / qwen3.5-flash
-  Qwen3-VL: qwen3-vl-plus / qwen3-vl-flash
+Supported models: qwen3.6-plus / qwen3.6-flash / qwen3-vl-plus
 
 Reference: https://bailian.console.aliyun.com/cn-beijing?tab=doc#/doc/?type=model&url=2845871
 """
@@ -13,8 +10,6 @@ import os
 import base64
 import argparse
 from pathlib import Path
-
-OUTPUT_FILENAME = "image_desc.txt"
 
 AVAILABLE_MODELS = [
     "qwen3.6-plus",         # 最新一代，性能最强，推荐优先使用
@@ -97,12 +92,6 @@ def main():
         sys.exit(1)
 
     text = resp.output.choices[0].message.content[0]["text"]
-
-    out_path = Path.cwd() / OUTPUT_FILENAME
-    with open(out_path, "w", encoding="utf-8") as f:
-        f.write(text)
-
-    print(f"[Saved to: {out_path}]")
     print(text)
 
 

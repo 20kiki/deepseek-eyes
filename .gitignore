@@ -1,6 +1,3 @@
-# Temporary output file
-image_desc.txt
-
 # Python
 __pycache__/
 *.py[cod]

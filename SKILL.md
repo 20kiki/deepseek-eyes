@@ -1,13 +1,13 @@
 ---
 name: deepseek-eyes
-description: Use when the user shares an image (screenshot, photo, diagram) that Claude can't natively see, or when the user asks to analyze/describe/understand an image. Route every image the user wants analyzed through this skill — send the image path to the bundled image_vision.py script, which calls a vision model (default: qwen3.6-plus) via DashScope and returns a Chinese text description. Then answer the user's question based on that description.
+description: Use when the user shares an image (screenshot, photo, diagram) that Claude can't natively see, or when the user asks to analyze/describe/understand an image. Route every image the user wants analyzed through this skill — send the image path to the bundled eyes.py script, which calls a vision model (default: qwen3.6-plus) via DashScope and returns a Chinese text description. Then answer the user's question based on that description.
 ---
 
 # Image Vision (DashScope Vision Models)
 
 ## Overview
 
-This skill bundles a Python script (`image_vision.py`) that sends an image to Alibaba Cloud DashScope's vision models and returns a detailed Chinese text description. Use this whenever the user wants help with an image.
+This skill bundles a Python script (`eyes.py`) that sends an image to Alibaba Cloud DashScope's vision models and returns a detailed Chinese text description. Use this whenever the user wants help with an image.
 
 **Background:** The current model (DeepSeek V4 Pro) cannot natively see images. This skill bridges that gap by routing images through Qwen series vision models — the vision model does the seeing, and the text description is fed back into the conversation so the main model can reason about the image content.
 
@@ -22,17 +22,17 @@ This skill bundles a Python script (`image_vision.py`) that sends an image to Al
 ### Step 1: Run the script
 
 ```bash
-python ~/.claude/skills/image-vision/image_vision.py "<image_path>"
+python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>"
 ```
 
 With a custom prompt:
 ```bash
-python ~/.claude/skills/image-vision/image_vision.py "<image_path>" --prompt "这张图片里有什么错误信息？"
+python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" --prompt "这张图片里有什么错误信息？"
 ```
 
 Switch models or enable high-res:
 ```bash
-python ~/.claude/skills/image-vision/image_vision.py "<image_path>" --model "qwen3.5-plus" --high-res
+python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" --model "qwen3.5-plus" --high-res
 ```
 
 ### Step 2: Read the output and answer
