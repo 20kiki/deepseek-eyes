@@ -19,25 +19,37 @@ This skill bundles a Python script (`eyes.py`) that sends an image to 阿里云�
 
 ## How to use
 
-### Step 1: Run the script
+### Step 1: Pick the right model (automatic)
 
-**Always pass the user's exact question as `--prompt`.** The default prompt is a fallback — a targeted question produces much better results.
+Follow this decision tree — don't ask the user, just pick:
+
+| Image type | Model | Flags |
+|:---|:---|:---|
+| Screenshot, UI, error message, code, table, document | `qwen3-vl-plus` (default) | `--high-res` |
+| Complex photo, diagram, artwork, detailed scene | `qwen3-vl-plus` (default) | `--high-res` |
+| Simple photo (landscape, person, object) — user just wants a quick look | `qwen3.6-flash` | `--high-res` |
+| Anything where accuracy matters | `qwen3-vl-plus` (default) | `--high-res` |
+
+**Default: `qwen3-vl-plus --high-res`.** Only switch to flash when the user explicitly wants speed, or it's clearly a casual "what's in this photo" with no precision requirements.
+
+### Step 2: Run the script
+
+**Always pass the user's exact question as `--prompt`:**
 
 ```bash
-python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" --prompt "<用户的具体问题>"
+python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" \
+  --prompt "<用户的具体问题>" \
+  --high-res
 ```
 
-For screenshots / UI / error messages, also enable `--high-res`:
+When speed matters more than accuracy:
 ```bash
-python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" --prompt "<用户的具体问题>" --high-res
+python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" \
+  --prompt "<用户的具体问题>" \
+  --model qwen3.6-flash --high-res
 ```
 
-For photos / scenes where precision matters, use `qwen3-vl-plus`:
-```bash
-python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" --prompt "<用户的具体问题>" --model "qwen3-vl-plus" --high-res
-```
-
-### Step 2: Read the output and answer
+### Step 3: Read the output and answer
 
 The script prints the description to stdout. Read it directly from the command output and answer the user's question about the image based on that description.
 
@@ -75,6 +87,6 @@ The script prints the description to stdout. Read it directly from the command o
 
 ## Notes
 
-- **Default: `qwen3-vl-plus --high-res`.** This is the right choice for 90% of use cases.
-- **Need speed?** `--model qwen3.6-flash --high-res` — fast but may miss details.
+- **Model selection is automatic** — follow the decision tree in Step 1. Don't ask the user which model to use.
+- **`--high-res` is always on.** No reason to ever omit it.
 - Description prints to stdout, read it directly from the command output.
