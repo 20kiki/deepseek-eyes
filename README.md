@@ -38,13 +38,22 @@ The script sends your image to Alibaba Cloud Bailian's vision API, gets back a d
 
 ## 🎯 Available Models
 
-All models use the Bailian `MultiModalConversation` API. Switch with `--model`:
+| Model | Use case | Precision | Speed |
+| :--- | :--- | :--- | :--- |
+| `qwen3-vl-plus` | **Precision work.** Photos, diagrams, small text, detailed scenes. Identifies artworks, authors, hidden text. | ★★★ | ★★ |
+| `qwen3.6-plus` (default) | **General use.** Casual photos, simple screenshots. | ★★ | ★★ |
+| `qwen3.6-flash` | **Quick preview only.** May misidentify colors and miss details. | ★ | ★★★ |
 
-| Model | Description |
-| :--- | :--- |
-| `qwen3.6-plus` (default) | Latest flagship — best all-around, object recognition / OCR / spatial localization |
-| `qwen3.6-flash` | Faster & cheaper — MoE 35B-A3B, near-Plus quality at lower cost |
-| `qwen3-vl-plus` | Dedicated vision-language — high-precision recognition, 3D localization, long video |
+**Real test** (complex illustration, all with `--high-res`):
+
+| | qwen3-vl-plus | qwen3.6-plus | qwen3.6-flash |
+| :--- | :--- | :--- | :--- |
+| Output detail | ~1200 words | ~500 words | ~400 words |
+| Hidden text found | "LOVE" on balloon | none | none |
+| Artwork identified | WLOP "The Sky Garden" 2018 | no | no |
+| Color errors | none | none | rainbow → "yellow" |
+
+> **Recommendation:** Use `--model qwen3-vl-plus --high-res` for anything where accuracy matters. Use `--model qwen3.6-plus --high-res` for casual photos. Avoid flash for precise work.
 
 ## 💰 Free Quota
 
