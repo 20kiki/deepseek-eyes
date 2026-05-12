@@ -104,7 +104,7 @@ The description prints directly to stdout.
 
 ### Claude Code
 ```bash
-cp -r . ~/.claude/skills/deepseek-eyes/
+git clone https://github.com/20kiki/deepseek-eyes.git ~/.claude/skills/deepseek-eyes
 ```
 
 ### Manual / Other platforms
