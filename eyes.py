@@ -12,12 +12,12 @@ if sys.platform == "win32":
     sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 AVAILABLE_MODELS = [
-    "qwen3.6-plus",         # 最新一代，性能最强，推荐优先使用
-    "qwen3.6-flash",        # 速度更快，成本更低
-    "qwen3-vl-plus",        # 专用视觉语言模型
+    "qwen3-vl-plus",        # 精度最高，默认推荐
+    "qwen3.6-plus",         # 通用备选
+    "qwen3.6-flash",        # 速度优先，简单场景
 ]
 
-DEFAULT_MODEL = "qwen3.6-plus"
+DEFAULT_MODEL = "qwen3-vl-plus"
 
 
 def encode_image(image_path: str) -> str:

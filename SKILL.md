@@ -1,6 +1,6 @@
 ---
 name: deepseek-eyes
-description: Use when the user shares an image (screenshot, photo, diagram) that Claude can't natively see, or when the user asks to analyze/describe/understand an image. Route every image the user wants analyzed through this skill — send the image path to the bundled eyes.py script, which calls a vision model (default: qwen3.6-plus) via 百炼 (DashScope) and returns a Chinese text description. Then answer the user's question based on that description.
+description: "Use when the user shares an image that Claude can't natively see, or when the user asks to analyze/describe/understand an image. Route every image through this skill — send the image path to eyes.py, which calls a vision model (default qwen3-vl-plus) via 百炼 DashScope and returns a Chinese text description. Then answer the user's question based on that description."
 ---
 
 # Image Vision (阿里云百炼 Vision Models)
@@ -51,9 +51,9 @@ The script prints the description to stdout. Read it directly from the command o
 
 | Model | Use case | Precision | Speed |
 |-------|----------|-----------|-------|
-| `qwen3-vl-plus` | **Precision work.** Photos, diagrams, small text, detailed scenes. Identifies artworks, authors, hidden text. | ★★★ | ★★ |
-| `qwen3.6-plus` (default) | **General use.** Casual photos, simple screenshots. | ★★ | ★★ |
-| `qwen3.6-flash` | **Quick preview only.** May misidentify colors and miss details. | ★ | ★★★ |
+| `qwen3-vl-plus` (default) | **Always use unless you need speed.** Photos, diagrams, small text, detailed scenes. Identifies artworks, authors, hidden text. | ★★★ | ★★ |
+| `qwen3.6-plus` | Legacy flagship. Use when vl-plus is unavailable. | ★★ | ★★ |
+| `qwen3.6-flash` | **When you just need a quick look.** Simple photos, casual use. Not for precision work — can misidentify colors. | ★ | ★★★ |
 
 **Real test comparison** (complex illustration, all with `--high-res`):
 
@@ -68,14 +68,13 @@ The script prints the description to stdout. Read it directly from the command o
 
 | Flag | Description |
 |------|-------------|
-| `--model` | Switch vision model (see table above) |
+| `--model` | Switch to `qwen3.6-flash` for speed, or `qwen3.6-plus` if vl-plus is unavailable |
 | `--prompt` | **Always pass the user's exact question.** Targeted questions dramatically outperform the generic default. |
 | `--file-url` | Use `file://` URL instead of base64 |
 | `--high-res` | **Always on for best results.** Negligible speed cost, significant accuracy gain for text and detail. |
 
 ## Notes
 
-- **Precision work (default for most cases): `--model qwen3-vl-plus --high-res`.**
-- **Everyday photos (casual):** `--model qwen3.6-plus --high-res`.
-- **Don't use `qwen3.6-flash` when accuracy matters.** It can misidentify colors and lose critical details.
+- **Default: `qwen3-vl-plus --high-res`.** This is the right choice for 90% of use cases.
+- **Need speed?** `--model qwen3.6-flash --high-res` — fast but may miss details.
 - Description prints to stdout, read it directly from the command output.

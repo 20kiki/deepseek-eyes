@@ -40,9 +40,9 @@ The script sends your image to Alibaba Cloud Bailian's vision API, gets back a d
 
 | Model | Use case | Precision | Speed |
 | :--- | :--- | :--- | :--- |
-| `qwen3-vl-plus` | **Precision work.** Photos, diagrams, small text, detailed scenes. Identifies artworks, authors, hidden text. | ★★★ | ★★ |
-| `qwen3.6-plus` (default) | **General use.** Casual photos, simple screenshots. | ★★ | ★★ |
-| `qwen3.6-flash` | **Quick preview only.** May misidentify colors and miss details. | ★ | ★★★ |
+| `qwen3-vl-plus` (default) | **Always use unless you need speed.** Photos, diagrams, small text, detailed scenes. | ★★★ | ★★ |
+| `qwen3.6-plus` | Legacy flagship. Use when vl-plus is unavailable. | ★★ | ★★ |
+| `qwen3.6-flash` | **When you just need a quick look.** Simple photos, casual use. | ★ | ★★★ |
 
 **Real test** (complex illustration, all with `--high-res`):
 
@@ -53,7 +53,7 @@ The script sends your image to Alibaba Cloud Bailian's vision API, gets back a d
 | Artwork identified | WLOP "The Sky Garden" 2018 | no | no |
 | Color errors | none | none | rainbow → "yellow" |
 
-> **Recommendation:** Use `--model qwen3-vl-plus --high-res` for anything where accuracy matters. Use `--model qwen3.6-plus --high-res` for casual photos. Avoid flash for precise work.
+> **Recommendation:** Default `qwen3-vl-plus --high-res` covers 90% of use cases. Switch to `--model qwen3.6-flash --high-res` when you just need a quick look.
 
 ## 💰 Free Quota
 
