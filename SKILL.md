@@ -49,25 +49,33 @@ The script prints the description to stdout. Read it directly from the command o
 
 ## Available Models
 
-| Model | Notes |
-|-------|-------|
-| `qwen3.6-plus` (default) | Latest flagship, best all-around |
-| `qwen3.6-flash` | Faster & cheaper |
-| `qwen3-vl-plus` | Dedicated VL, high-precision object recognition |
+| Model | Use case | Precision | Speed |
+|-------|----------|-----------|-------|
+| `qwen3-vl-plus` | **Precision work.** Photos, diagrams, small text, detailed scenes. Identifies artworks, authors, hidden text. | ★★★ | ★★ |
+| `qwen3.6-plus` (default) | **General use.** Casual photos, simple screenshots. | ★★ | ★★ |
+| `qwen3.6-flash` | **Quick preview only.** May misidentify colors and miss details. | ★ | ★★★ |
+
+**Real test comparison** (complex illustration, all with `--high-res`):
+
+| | qwen3-vl-plus | qwen3.6-plus | qwen3.6-flash |
+|---|---|---|---|
+| Output detail | ~1200 words | ~500 words | ~400 words |
+| Text found | "LOVE" on balloon | none | none |
+| Artwork identified | WLOP "The Sky Garden" 2018 | no | no |
+| Color errors | none | none | rainbow slide → "yellow" |
 
 ## Options
 
 | Flag | Description |
 |------|-------------|
 | `--model` | Switch vision model (see table above) |
-| `--prompt` | Custom question/prompt for the image |
+| `--prompt` | **Always pass the user's exact question.** Targeted questions dramatically outperform the generic default. |
 | `--file-url` | Use `file://` URL instead of base64 |
-| `--high-res` | High resolution mode (documents/tables/small text) |
+| `--high-res` | **Always on for best results.** Negligible speed cost, significant accuracy gain for text and detail. |
 
 ## Notes
 
-- **Always use `--prompt` with the user's actual question.** The structured default prompt is a fallback.
-- **Always use `--high-res` for screenshots, documents, tables, or text-heavy images.** It's the single biggest accuracy lever.
-- For maximum precision (diagrams, UI details, small objects): combine `--model qwen3-vl-plus --high-res`.
+- **Precision work (default for most cases): `--model qwen3-vl-plus --high-res`.**
+- **Everyday photos (casual):** `--model qwen3.6-plus --high-res`.
+- **Don't use `qwen3.6-flash` when accuracy matters.** It can misidentify colors and lose critical details.
 - Description prints to stdout, read it directly from the command output.
-- The script always works — the current model never needs to "see" the image directly.
