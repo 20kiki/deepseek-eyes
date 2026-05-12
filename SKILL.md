@@ -21,18 +21,20 @@ This skill bundles a Python script (`eyes.py`) that sends an image to 阿里云�
 
 ### Step 1: Run the script
 
+**Always pass the user's exact question as `--prompt`.** The default prompt is a fallback — a targeted question produces much better results.
+
 ```bash
-python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>"
+python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" --prompt "<用户的具体问题>"
 ```
 
-With a custom prompt:
+For screenshots / UI / error messages, also enable `--high-res`:
 ```bash
-python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" --prompt "这张图片里有什么错误信息？"
+python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" --prompt "<用户的具体问题>" --high-res
 ```
 
-Switch models or enable high-res:
+For photos / scenes where precision matters, use `qwen3-vl-plus`:
 ```bash
-python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" --model "qwen3-vl-plus" --high-res
+python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" --prompt "<用户的具体问题>" --model "qwen3-vl-plus" --high-res
 ```
 
 ### Step 2: Read the output and answer
@@ -64,7 +66,8 @@ The script prints the description to stdout. Read it directly from the command o
 
 ## Notes
 
-- The script always works — the current model never needs to "see" the image directly
-- Description prints to stdout, read it directly from the command output
-- Default prompt asks for a detailed description in Chinese; override with `--prompt` for targeted questions
-- Switch models with `--model` to balance speed, cost, and accuracy
+- **Always use `--prompt` with the user's actual question.** The structured default prompt is a fallback.
+- **Always use `--high-res` for screenshots, documents, tables, or text-heavy images.** It's the single biggest accuracy lever.
+- For maximum precision (diagrams, UI details, small objects): combine `--model qwen3-vl-plus --high-res`.
+- Description prints to stdout, read it directly from the command output.
+- The script always works — the current model never needs to "see" the image directly.

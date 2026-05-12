@@ -41,7 +41,15 @@ def encode_image(image_path: str) -> str:
 def main():
     parser = argparse.ArgumentParser(description="Describe an image with 百炼 (DashScope) vision models")
     parser.add_argument("image", help="Path to the image file")
-    parser.add_argument("--prompt", default="请详细描述这张图片的内容。",
+    parser.add_argument("--prompt",
+                        default=(
+                            "请精确描述这张图片的内容，不要遗漏细节。按以下结构输出：\n"
+                            "1. 整体场景/布局（这是什么类型的图片？界面截图、照片、文档？）\n"
+                            "2. 所有文字内容（逐字抄录，不要概括或改写）\n"
+                            "3. UI 元素（按钮、菜单、输入框、弹窗、标签页等，含位置关系）\n"
+                            "4. 视觉特征（颜色、图标、高亮、错误/警告标记）\n"
+                            "5. 任何异常或值得注意的细节（报错信息、缺失内容、布局错乱等）"
+                        ),
                         help="Custom prompt for the vision model")
     parser.add_argument("--model", default=DEFAULT_MODEL,
                         choices=AVAILABLE_MODELS,
