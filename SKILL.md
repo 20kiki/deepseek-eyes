@@ -19,37 +19,21 @@ This skill bundles a Python script (`eyes.py`) that sends an image to 阿里云�
 
 ## How to use
 
-### Step 1: Pick the right model (automatic)
+### Step 1: Run the script
 
-Follow this decision tree — don't ask the user, just pick:
-
-| Image type | Model | Flags |
-|:---|:---|:---|
-| Screenshot, UI, error message, code, table, document | `qwen3-vl-plus` (default) | `--high-res` |
-| Complex photo, diagram, artwork, detailed scene | `qwen3-vl-plus` (default) | `--high-res` |
-| Simple photo (landscape, person, object) — user just wants a quick look | `qwen3.6-flash` | `--high-res` |
-| Anything where accuracy matters | `qwen3-vl-plus` (default) | `--high-res` |
-
-**Default: `qwen3-vl-plus --high-res`.** Only switch to flash when the user explicitly wants speed, or it's clearly a casual "what's in this photo" with no precision requirements.
-
-### Step 2: Run the script
+**Always use `qwen3-vl-plus --high-res`.** I can't see the image before running the model, so there's no way to "pick the right model" — just use the best one every time.
 
 **Always pass the user's exact question as `--prompt`:**
 
 ```bash
 python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" \
   --prompt "<用户的具体问题>" \
-  --high-res
+  --model qwen3-vl-plus --high-res
 ```
 
-When speed matters more than accuracy:
-```bash
-python ~/.claude/skills/deepseek-eyes/eyes.py "<image_path>" \
-  --prompt "<用户的具体问题>" \
-  --model qwen3.6-flash --high-res
-```
+Only switch to `qwen3.6-flash` if the user explicitly asks for speed over accuracy.
 
-### Step 3: Read the output and answer
+### Step 2: Read the output and answer
 
 The script prints the description to stdout. Read it directly from the command output and answer the user's question about the image based on that description.
 
@@ -87,6 +71,6 @@ The script prints the description to stdout. Read it directly from the command o
 
 ## Notes
 
-- **Model selection is automatic** — follow the decision tree in Step 1. Don't ask the user which model to use.
-- **`--high-res` is always on.** No reason to ever omit it.
+- **Always `qwen3-vl-plus --high-res`.** I can't preview the image, so use the best model every time. Only switch to flash if the user asks for speed.
+- Description prints to stdout, read it directly from the command output.
 - Description prints to stdout, read it directly from the command output.
