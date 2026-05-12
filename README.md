@@ -18,6 +18,7 @@
 - [Free Quota](#-free-quota)
 - [Quick Start](#-quick-start)
 - [Installation](#-installation)
+- [Topics](#topics)
 - [Contributing](#-contributing)
 - [License](#-license)
 
@@ -127,7 +128,7 @@ Run `eyes.py` directly — it's a standalone script. Feed the output into any LL
 
 ## Topics
 
-`deepseek` `vision` `multimodal` `claude-code` `skill` `bailian` `qwen` `image-understanding`
+[`deepseek`](https://github.com/topics/deepseek) [`vision`](https://github.com/topics/vision) [`multimodal`](https://github.com/topics/multimodal) [`claude-code`](https://github.com/topics/claude-code) [`skill`](https://github.com/topics/skill) [`bailian`](https://github.com/topics/bailian) [`qwen`](https://github.com/topics/qwen) [`image-understanding`](https://github.com/topics/image-understanding)
 
 ## 🤝 Contributing
 
