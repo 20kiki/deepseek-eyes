@@ -59,46 +59,49 @@ After the free quota runs out, vision models start at ~¥1 per million tokens.
 
 ## 🚀 Quick Start
 
-### 1. Install
+> **What you need:** `git` and `python` installed. Run `git --version` and `python --version` in terminal to check.
+
+### Step 1 — Install the skill
+
+Open terminal:
+- **Windows:** `Win + R`, type `powershell`, Enter
+- **macOS:** `Cmd + Space`, type `terminal`, Enter
+- **Linux:** you know the drill
+
+Run:
+
+```bash
+git clone https://github.com/20kiki/deepseek-eyes.git ~/.claude/skills/deepseek-eyes
+```
+
+This downloads the project into Claude Code's skills folder. Run `git pull` in that folder anytime to update.
+
+### Step 2 — Install Python dependency
 
 ```bash
 pip install dashscope
 ```
 
-### 2. Get API Key
+### Step 3 — Get API Key
 
-Register at [Bailian Console](https://bailian.console.aliyun.com/), create an API key, then set it in your terminal:
+Register at [Bailian Console](https://bailian.console.aliyun.com/), create an API key, then save it to your system:
 
-**macOS / Linux (permanent) — run in terminal:**
+**macOS / Linux — run in terminal:**
 ```bash
 echo 'export DASHSCOPE_API_KEY="your-api-key"' >> ~/.bashrc
 source ~/.bashrc
 ```
 Use `~/.zshrc` if you're on zsh.
 
-**Windows (permanent) — run in PowerShell:**
+**Windows — run in PowerShell:**
 ```powershell
 [Environment]::SetEnvironmentVariable("DASHSCOPE_API_KEY", "your-api-key", "User")
 ```
 Restart terminal after setting. For temporary use: `$env:DASHSCOPE_API_KEY="your-api-key"` (current session only).
 
-### 3. Use
+### Step 4 — Done
 
-```bash
-# Basic usage
-python eyes.py path/to/image.png
-
-# With a specific question
-python eyes.py screenshot.png --prompt "What error message is shown?"
-
-# Switch models
-python eyes.py photo.jpg --model qwen3.6-flash
-
-# High-res mode for documents / tables / small text
-python eyes.py table.png --high-res
-```
-
-The description prints directly to stdout.
+Share any image in Claude Code and ask a question about it — the skill handles the rest.
 
 ## 📦 Installation
 

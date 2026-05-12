@@ -58,49 +58,49 @@
 
 ## 🚀 快速开始
 
-### 1. 安装依赖
+> **前置条件：** 电脑上已安装 `git` 和 `python`。在终端输入 `git --version` 和 `python --version` 检查。
+
+### 第一步 — 安装 skill
+
+打开终端：
+- **Windows：** `Win + R`，输入 `powershell`，回车
+- **macOS：** `Cmd + 空格`，输入 `terminal`，回车
+- **Linux：** 你懂的
+
+运行：
+
+```bash
+git clone https://github.com/20kiki/deepseek-eyes.git ~/.claude/skills/deepseek-eyes
+```
+
+这条命令把项目下载到 Claude Code 的 skills 文件夹。以后想更新，进入该文件夹执行 `git pull`。
+
+### 第二步 — 安装 Python 依赖
 
 ```bash
 pip install dashscope
 ```
 
-### 2. 配置 API Key
+### 第三步 — 获取 API Key
 
-在 [百炼控制台](https://bailian.console.aliyun.com/) 获取 API Key，然后在终端中设置环境变量：
+在 [百炼控制台](https://bailian.console.aliyun.com/) 注册并创建 API Key，然后设置到系统中：
 
-**macOS / Linux（永久生效）— 在终端中执行：**
+**macOS / Linux — 在终端中执行：**
 ```bash
 echo 'export DASHSCOPE_API_KEY="your-api-key"' >> ~/.bashrc
 source ~/.bashrc
 ```
 若使用 zsh，将 `.bashrc` 替换为 `.zshrc`。
 
-**Windows（永久生效）— 在 PowerShell 中执行：**
+**Windows — 在 PowerShell 中执行：**
 ```powershell
 [Environment]::SetEnvironmentVariable("DASHSCOPE_API_KEY", "your-api-key", "User")
 ```
-设置后需重启终端。临时使用可在当前窗口 `$env:DASHSCOPE_API_KEY="your-api-key"`（仅本次有效）。
+设置后需重启终端。临时使用：`$env:DASHSCOPE_API_KEY="your-api-key"`（仅当前窗口有效）。
 
-### 3. 使用
+### 第四步 — 完成
 
-```bash
-# 基本用法 (默认 qwen3.6-plus)
-python eyes.py path/to/image.png
-
-# 指定提示词
-python eyes.py screenshot.png --prompt "这张图片里有什么错误信息？"
-
-# 切换模型
-python eyes.py photo.jpg --model qwen3-vl-plus
-
-# 追求速度 / 降低成本
-python eyes.py photo.jpg --model qwen3.6-flash
-
-# 高分辨率模式（表格/文档/小字场景推荐）
-python eyes.py table.png --high-res
-```
-
-描述文本直接打印到终端。
+在 Claude Code 中分享任意图片并提出问题，skill 会自动处理。
 
 ## 📦 安装
 
