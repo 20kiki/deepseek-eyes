@@ -107,6 +107,8 @@ The description prints directly to stdout.
 git clone https://github.com/20kiki/deepseek-eyes.git ~/.claude/skills/deepseek-eyes
 ```
 
+Claude Code auto-discovers it. Make sure `pip install dashscope` and set `DASHSCOPE_API_KEY` first (see [Quick Start](#quick-start)).
+
 ### Manual / Other platforms
 Run `eyes.py` directly — it's a standalone script. Feed the output into any LLM conversation.
 

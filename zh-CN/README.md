@@ -109,6 +109,8 @@ python eyes.py table.png --high-res
 git clone https://github.com/20kiki/deepseek-eyes.git ~/.claude/skills/deepseek-eyes
 ```
 
+Claude Code 会自动发现。请先确保已 `pip install dashscope` 并配置好 `DASHSCOPE_API_KEY`（见[快速开始](#快速开始)）。
+
 ### 手动 / 其他平台
 直接运行 `eyes.py`，将输出文本粘贴到任何 LLM 对话中即可。
 
