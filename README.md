@@ -13,14 +13,13 @@
 ---
 
 ## 📋 Table of Contents
-- [The Problem](#the-problem)
-- [How It Works](#how-it-works)
-- [Available Models](#available-models)
-- [Free Quota](#free-quota)
-- [Quick Start](#quick-start)
-- [Installation](#installation)
-- [Contributing](#contributing)
-- [License](#license)
+- [How It Works](#-how-it-works)
+- [Available Models](#-available-models)
+- [Free Quota](#-free-quota)
+- [Quick Start](#-quick-start)
+- [Installation](#-installation)
+- [Contributing](#-contributing)
+- [License](#-license)
 
 ---
 
