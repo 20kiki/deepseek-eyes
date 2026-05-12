@@ -61,21 +61,27 @@
 
 ## 🚀 快速开始
 
-> **前置条件：** 电脑上已安装 `git` 和 `python`。在终端输入 `git --version` 和 `python --version` 检查。
+> **前置条件：** 电脑上已安装 `python`。在终端输入 `python --version` 检查。
 
 ### 第一步 — 安装 skill
 
-打开终端：
-- **macOS / Linux：** 打开终端（Terminal）
-- **Windows：** `Win + R`，输入 `powershell`，回车
+这个 skill 只需要两个文件：`SKILL.md` + `eyes.py`。把它们下载到 Claude Code 的 skills 文件夹。
 
-运行：
-
+**macOS / Linux：**
 ```bash
-git clone https://github.com/20kiki/deepseek-eyes.git ~/.claude/skills/deepseek-eyes
+mkdir -p ~/.claude/skills/deepseek-eyes
+curl -o ~/.claude/skills/deepseek-eyes/SKILL.md https://raw.githubusercontent.com/20kiki/deepseek-eyes/master/SKILL.md
+curl -o ~/.claude/skills/deepseek-eyes/eyes.py https://raw.githubusercontent.com/20kiki/deepseek-eyes/master/eyes.py
 ```
 
-这条命令把项目下载到 Claude Code 的 skills 文件夹。以后想更新，进入该文件夹执行 `git pull`。
+**Windows（PowerShell）：**
+```powershell
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills\deepseek-eyes"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/20kiki/deepseek-eyes/master/SKILL.md" -OutFile "$env:USERPROFILE\.claude\skills\deepseek-eyes\SKILL.md"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/20kiki/deepseek-eyes/master/eyes.py" -OutFile "$env:USERPROFILE\.claude\skills\deepseek-eyes\eyes.py"
+```
+
+> 以后想更新：重新执行同样的命令，覆盖旧文件即可。
 
 ### 第二步 — 安装 Python 依赖
 
@@ -107,11 +113,7 @@ source ~/.bashrc
 ## 📦 安装
 
 ### Claude Code
-```bash
-git clone https://github.com/20kiki/deepseek-eyes.git ~/.claude/skills/deepseek-eyes
-```
-
-Claude Code 会自动发现。请先确保已 `pip install dashscope` 并配置好 `DASHSCOPE_API_KEY`（见[快速开始](#快速开始)）。
+把 `SKILL.md` 和 `eyes.py` 放到 `~/.claude/skills/deepseek-eyes/` 下即可。详见[快速开始](#-快速开始)。请先确保已 `pip install dashscope` 并配置好 `DASHSCOPE_API_KEY`。
 
 ### 手动 / 其他平台
 直接运行 `eyes.py`，将输出文本粘贴到任何 LLM 对话中即可。

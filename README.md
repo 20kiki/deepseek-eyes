@@ -59,21 +59,27 @@ After the free quota runs out, vision models start at ~¥1 per million tokens.
 
 ## 🚀 Quick Start
 
-> **What you need:** `git` and `python` installed. Run `git --version` and `python --version` in terminal to check.
+> **What you need:** `python` installed. Run `python --version` in terminal to check.
 
 ### Step 1 — Install the skill
 
-Open terminal:
-- **macOS / Linux:** Open Terminal
-- **Windows:** `Win + R`, type `powershell`, Enter
+The skill is two files: `SKILL.md` + `eyes.py`. Download them into Claude Code's skills folder.
 
-Run:
-
+**macOS / Linux:**
 ```bash
-git clone https://github.com/20kiki/deepseek-eyes.git ~/.claude/skills/deepseek-eyes
+mkdir -p ~/.claude/skills/deepseek-eyes
+curl -o ~/.claude/skills/deepseek-eyes/SKILL.md https://raw.githubusercontent.com/20kiki/deepseek-eyes/master/SKILL.md
+curl -o ~/.claude/skills/deepseek-eyes/eyes.py https://raw.githubusercontent.com/20kiki/deepseek-eyes/master/eyes.py
 ```
 
-This downloads the project into Claude Code's skills folder. Run `git pull` in that folder anytime to update.
+**Windows (PowerShell):**
+```powershell
+New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\.claude\skills\deepseek-eyes"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/20kiki/deepseek-eyes/master/SKILL.md" -OutFile "$env:USERPROFILE\.claude\skills\deepseek-eyes\SKILL.md"
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/20kiki/deepseek-eyes/master/eyes.py" -OutFile "$env:USERPROFILE\.claude\skills\deepseek-eyes\eyes.py"
+```
+
+> To update later: re-run the same commands.
 
 ### Step 2 — Install Python dependency
 
@@ -105,11 +111,7 @@ Share any image in Claude Code and ask a question about it — the skill handles
 ## 📦 Installation
 
 ### Claude Code
-```bash
-git clone https://github.com/20kiki/deepseek-eyes.git ~/.claude/skills/deepseek-eyes
-```
-
-Claude Code auto-discovers it. Make sure `pip install dashscope` and set `DASHSCOPE_API_KEY` first (see [Quick Start](#quick-start)).
+Drop `SKILL.md` and `eyes.py` into `~/.claude/skills/deepseek-eyes/`. See [Quick Start](#-quick-start) for the one-liner. Make sure `pip install dashscope` and `DASHSCOPE_API_KEY` are set first.
 
 ### Manual / Other platforms
 Run `eyes.py` directly — it's a standalone script. Feed the output into any LLM conversation.
