@@ -63,9 +63,8 @@
 ### 第一步 — 安装 skill
 
 打开终端：
+- **macOS / Linux：** 打开终端（Terminal）
 - **Windows：** `Win + R`，输入 `powershell`，回车
-- **macOS：** `Cmd + 空格`，输入 `terminal`，回车
-- **Linux：** 你懂的
 
 运行：
 

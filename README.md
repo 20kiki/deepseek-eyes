@@ -64,9 +64,8 @@ After the free quota runs out, vision models start at ~¥1 per million tokens.
 ### Step 1 — Install the skill
 
 Open terminal:
+- **macOS / Linux:** Open Terminal
 - **Windows:** `Win + R`, type `powershell`, Enter
-- **macOS:** `Cmd + Space`, type `terminal`, Enter
-- **Linux:** you know the drill
 
 Run:
 
